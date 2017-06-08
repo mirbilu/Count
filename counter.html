@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>计算器</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/counter.css">
+</head>
+
+<body>
+	<h1 align="center">网页计算器</h1>
+    <div class="counter">
+        <input type="button" value="AC" class="operator" onclick="ac()">
+        <input type="button" value="delete" class="operator" onclick="backspace()">
+        <input type="button" value="/" onclick="op(this)" class="operator">
+        <input type="button" value="*" onclick="op(this)" class="operator">
+        <input type="button" value="7" onclick="num(this)" class="number">
+        <input type="button" value="8" onclick="num(this)" class="number">
+        <input type="button" value="9" onclick="num(this)" class="number">
+        <input type="button" value="+" onclick="op(this)" class="operator">
+        <input type="button" value="4" onclick="num(this)" class="number">
+        <input type="button" value="5" onclick="num(this)" class="number">
+        <input type="button" value="6" onclick="num(this)" class="number">
+        <input type="button" value="-" onclick="op(this)" class="operator">
+        <input type="button" value="1" onclick="num(this)" class="number">
+        <input type="button" value="2" onclick="num(this)" class="number">
+        <input type="button" value="3" onclick="num(this)" class="number">
+        <input type="button" value="=" onclick="result(this)" class="operator">
+        <input type="button" value="0" onclick="num(this)" class="number zero">
+        <input type="button" value="." onclick="num(this)" class="number">
+    </div>
+    <script style="text/javascript">
+    var operator;
+    var number;
+    var number2;
+    var x = 0;
+
+    function num(data) {
+        if (x == 0) {
+            number= data.value;
+            alert("num:" + number);
+            x += 1;
+        } else {
+            number+= data.value;
+            alert("num:" + number);
+
+        }
+    }
+
+    function op(data) {
+        operator = data.value;
+        alert(operator);
+        x = 0;
+        number2=number;
+    }
+
+    function result(data) {
+        var num1 = parseFloat(number);
+        var num2 = parseFloat(number2);
+        var result;
+        if (operator == "+") {
+            result = num2 + num1;
+        } else if (operator == "-") {
+            result = num2 - num1;
+        } else if (operator == "*") {
+            result = num2 * num1;
+        } else if (operator == "/") {
+        	if (num1==0) {
+        		result="NAN";
+        	}
+        	else{
+        		result = num2 / num1;
+        	}
+            
+        }
+        x = 0;
+        alert("结果" + result);
+    }
+
+    function ac() {
+        number= "";
+        number2 = "";
+        x = 0;
+        operator = "";
+        alert("清空");
+    }
+
+    function backspace() {
+        number = number.substring(0, number.length - 1);
+        alert(number);
+    }
+    </script>
+</body>
+
+</html>
